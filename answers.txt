@@ -1,5 +1,10 @@
+Q1) Django uses session based authentication. It can be managed by django authentication_classes.
+
 Q2) -a username:password - Basic auth
 
 Q3) SessionAuthentication uses cookies, TokenAuthentication: token is provided by the server and users can use that specific token to make requests that requires Authentication
 
-Q4) 
+Q4) Bitbucket request for authentication to google. Google asks for permission. Google provided an auth code bitbucket. Bitbucket uses this code to get access token from googles OAuth2 server. Then bitbucket can use the token to access user information
+
+Q5)
+https://github.com/nevilkandathil/authentication-lab
