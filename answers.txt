@@ -1,0 +1,5 @@
+Q2) -a username:password - Basic auth
+
+Q3) SessionAuthentication uses cookies, TokenAuthentication: token is provided by the server and users can use that specific token to make requests that requires Authentication
+
+Q4) 

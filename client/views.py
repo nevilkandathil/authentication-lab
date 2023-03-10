@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User, Group
 from rest_framework import generics, viewsets, permissions, renderers
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Snippet
 from .serializers import UserSerializer, GroupSerializer, SnippetSerializer
 from .permissions import IsOwnerOrReadOnly
-
+from rest_framework.authentication import TokenAuthentication
 
 class IndexView(TemplateView):
     template_name = "client/index.html"
@@ -32,8 +33,9 @@ class GroupViewSet(viewsets.ModelViewSet):
 class SnippetViewSet(viewsets.ModelViewSet):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    permission_classes = (IsAuthenticated,)#(
+        # permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+    authentication_classes = (TokenAuthentication,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
